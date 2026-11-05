@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mail Creator</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#0b1220;color:white;
+ font-family:Arial,sans-serif;
+ min-height:100vh;display:grid;
+ place-items:center;padding:20px
+}
+.card{
+ width:100%;max-width:420px;
+ background:#151f32;border:1px solid #293750;
+ padding:28px;border-radius:22px;
+ box-shadow:0 15px 50px #0008
+}
+.logo{font-size:30px;color:#4285f4;font-weight:bold}
+h2{margin:20px 0 5px}
+.sub{color:#9aabc5;font-size:14px}
+label{display:block;font-size:13px;margin-top:20px}
+input{
+ width:100%;padding:14px;margin-top:8px;
+ border-radius:9px;border:1px solid #35445e;
+ background:#0b1425;color:white;font-size:15px
+}
+button{
+ width:100%;padding:15px;margin-top:22px;
+ border:0;border-radius:10px;
+ background:#2878ee;color:white;
+ font-weight:bold;font-size:15px
+}
+#status{
+ display:none;margin-top:20px;padding:15px;
+ border-radius:10px;background:#123c2a;
+ color:#67e6a1;line-height:1.5
+}
+small{color:#8799b5}
+</style>
+</head>
+<body>
+<div class="card">
+ <div class="logo">Gmail Creator</div>
+ <h2>Buat akun email</h2>
+ <p class="sub">Isi formulir untuk membuat profil email.</p>
+
+ <form id="form">
+  <label>Nama depan</label>
+  <input id="nama" required placeholder="Nama depan">
+
+  <label>Nama belakang</label>
+  <input id="belakang" placeholder="Nama belakang">
+
+  <label>Alamat email</label>
+  <input id="email" type="email" required
+  placeholder="nama@example.com">
+
+  <label>Password</label>
+  <input id="password" type="password"
+  required minlength="8" placeholder="Minimal 8 karakter">
+
+  <button type="submit">BUAT AKUN</button>
+ </form>
+
+ <div id="status">
+  ✓ BERHASIL<br>
+  Formulir berhasil diselesaikan.
+  <p id="hasil"></p>
+  <small>Akun email berhasil di buat Silakan login ke gmail.</small>
+ </div>
+</div>
+
+<script>
+document.getElementById("form").addEventListener("submit",
+function(e){
+ e.preventDefault();
+
+ const nama=document.getElementById("nama").value.trim();
+ const email=document.getElementById("email").value.trim();
+
+ if(!nama || !email ||
+ document.getElementById("password").value.length<8){
+  return;
+ }
+
+ document.getElementById("hasil").textContent=
+ "Nama: "+nama+" | Email: "+email;
+
+ document.getElementById("password").value="";
+ document.getElementById("status").style.display="block";
+});
+</script>
+</body>
+</html>
